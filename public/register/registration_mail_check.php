@@ -30,7 +30,7 @@ if(empty($_POST)){
 
 if(count($errors) === 0){
     $urltoken = hash('sha256',uniqid(rand(),1));
-    $url = "http://192.168.33.10/registration_form.php"."?urltoken=".$urltoken;
+    $url = "http://192.168.33.10/register/registration_form.php"."?urltoken=".$urltoken;
 
     try{
         $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
