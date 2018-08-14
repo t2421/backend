@@ -13,6 +13,7 @@ if ($_POST['token'] != $_SESSION['token']){
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 function spaceTrim($str){
+    //行頭行末の空白を削除
     $str = preg_replace('/^[ ]+/u','',$str);
     $str = preg_replace('/[ ]+$/u','',$str);
 
@@ -38,9 +39,11 @@ if(empty($_POST)) {
     endif;
 
     if($password == ""):
-        $errors["password"] = "error!";
+        $errors["password"] = "require password!";
+    elseif(!preg_match('/^[0-9a-zA-Z]{5,30}$/',$_POST["password"])):
+        $errors["password_length"] = "5文字以上30文字以下の英数字";
     else:
-        $password_hide = str_replace('*',strlen($password));
+        $password_hide = str_repeat('*',strlen($password));
     endif;
 
     if(count($errors) === 0){
