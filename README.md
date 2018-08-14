@@ -10,5 +10,6 @@ scotchboxを使えば特に何の設定もなしに使うことができる
 
 
 ## index
-### login
-シンプルな会員登録およびログイン機能の実装
+### register
+シンプルな会員登録およびログイン機能の実装  
+@see https://noumenon-th.net/programming/2016/02/26/registration/
