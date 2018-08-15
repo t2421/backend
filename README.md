@@ -13,6 +13,7 @@ scotchboxを使えば特に何の設定もなしに使うことができる
 ### register
 シンプルな会員登録およびログイン機能の実装  
 @see https://noumenon-th.net/programming/2016/02/26/registration/  
+この例だと、メールの重複チェックや、実際ログインする機能がないので、そこを自分でやってみる。
 ```
 create database registration;
 use registration;
