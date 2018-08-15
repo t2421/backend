@@ -54,10 +54,10 @@ $body = <<< EOM
 {$url}
 EOM;
 
-    mb_language("ja");
-    mb_internal_encoding('UTF-8');
-    $header = 'From: '.mb_encode_mimeheader($name).'<'.$mail.'>';
-    if(mb_send_mail($mailTo,$subject,$body,$header, '-f'.$returnMail)){
+mb_language("ja");
+mb_internal_encoding("UTF-8");
+    $header = 'From: ' . mb_encode_mimeheader($name,'ISO-2022-JP'). ' <' . $mail. '>';
+    if (mb_send_mail($mailTo, $subject, $body, $header, '-f'. $returnMail)) {
         $_SESSION = array();
         if(isset($_COOKIE["PHPSESSID"])){
             setcookie("PHPSESSID",'',time()-1800,'/');

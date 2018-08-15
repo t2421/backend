@@ -28,6 +28,7 @@ $account = $_SESSION['account'];
 
 $password_hash = password_hash($_SESSION["password"],PASSWORD_DEFAULT);
 
+//トランザクションを使うことによって、どこかの処理で不都合があった際に、rollbackでもどることができ、不完全な状態にならないようにできる。
 try{
     $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     $dbh->beginTransaction();
