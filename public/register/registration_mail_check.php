@@ -36,10 +36,11 @@ function check_email($dbh,$mail){
         $stmt->bindValue(':mail',$mail,PDO::PARAM_STR);
         $stmt->execute();
         $val = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(count($val)>0){
+        if(!empty($val)){
             echo "もうすでにそのEメールで登録されているものがあるよ！";
             exit();
         }
+     
     }catch(PDOException $e){
         print('ERROR:'.$e->getMessage());
         die();
