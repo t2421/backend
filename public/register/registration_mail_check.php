@@ -28,9 +28,30 @@ if(empty($_POST)){
     }
 }
 
+
+function check_email($dbh,$mail){
+    try{
+        $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $stmt = $dbh->prepare("select * from pre_member where mail=:mail and flag=1");
+        $stmt->bindValue(':mail',$mail,PDO::PARAM_STR);
+        $stmt->execute();
+        $val = $stmt->fetch(PDO::FETCH_ASSOC);
+        if(count($val)>0){
+            echo "もうすでにそのEメールで登録されているものがあるよ！";
+            exit();
+        }
+    }catch(PDOException $e){
+        print('ERROR:'.$e->getMessage());
+        die();
+    }
+}
+
 if(count($errors) === 0){
     $urltoken = hash('sha256',uniqid(rand(),1));
     $url = "http://192.168.33.10/register/registration_form.php"."?urltoken=".$urltoken;
+
+    //mailcheck
+    check_email($dbh,$mail);
 
     try{
         $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -45,14 +66,15 @@ if(count($errors) === 0){
     }
     $mailTo = $mail;
     $returnMail = 't2421gm+owner@gmail.com';
-    $name = '神だ';
-    $subject = '神からだ';
+    $name = 'God';
+    $subject = 'From God';
     $mail = 't2421gm+owner@gmail.com';
 
 $body = <<< EOM
 24時間以内に下記のURLからご登録下さい。
 {$url}
 EOM;
+
 
 mb_language("ja");
 mb_internal_encoding("UTF-8");

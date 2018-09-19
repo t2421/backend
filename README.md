@@ -3,6 +3,7 @@
 ## 開発環境
 ### scotch  
 LAMPP環境を簡単に構築するvagrant box  
+https://box.scotch.io/  
 https://github.com/scotch-io/scotch-box
 ### MailHog
 http://192.168.33.10:8025/  
