@@ -38,3 +38,6 @@ password VARCHAR(128) NOT NULL,
 flag TINYINT(1) NOT NULL DEFAULT 1
 )ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 ```
+
+無理やりやってみたらコード汚かったので、きれいそうな以下の例でやってみたい  
+https://qiita.com/ShibuyaKosuke/items/f114ffccf441edb2b745
