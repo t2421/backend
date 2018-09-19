@@ -1,0 +1,22 @@
+[
+    {
+        "userId":0,
+        "password":"password",
+        "displayName":"My Name is PHP",
+        "email":"t2421gm@gmail.com",
+        "token":"myrevolution",
+        "loginFailureCount":0,
+        "loginFailureDatetime":0,
+        "deleteFlag":0
+    },
+    {
+        "userId":1,
+        "password":"password2",
+        "displayName":"My Name is PHP Hyper Creator",
+        "email":"t2421gm+php@gmail.com",
+        "token":"misatowatanabe",
+        "loginFailureCount":0,
+        "loginFailureDatetime":0,
+        "deleteFlag":0
+    }
+]
