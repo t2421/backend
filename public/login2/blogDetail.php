@@ -15,19 +15,20 @@ $user = $data_access->select([
 	"userId" => $_SESSION["userid"]
 ]);
 
-$blog = $blog_data_access->selectAll();
+$blog = $blog_data_access->select([
+    "id" => $_GET["id"]
+]);
 
-
+$create_user = $data_access->select([
+	"userId"=>$blog->createUser
+]);
 ?>
 <html>
 	<head></head>
 	<body>
-		<h1>My Blog</h1>
-		<ul>        
-		<?php foreach ($blog as $item): ?>
-			<li><a href="blogDetail.php?id=<?php echo $item->id ?>"><?php echo $item->title ?></a></li>
-		<?php endforeach; ?>
-        </ul>
-        <a href="logout.php">logout</a>
+		<h1><input type="text" value="<?php echo $blog->title ?>"></h1>
+		<p class="author">author:<?php echo $create_user->displayName ?></p>
+		<textarea name="description" cols="30" rows="10"><?php echo $blog->description ?></textarea>
+        <p><a href="logout.php">logout</a></p>
 	</body>
 </html>

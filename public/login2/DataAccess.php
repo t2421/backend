@@ -8,6 +8,9 @@ class DataAccess{
     public function select($condition){
     	
     }
+    public function selectAll(){
+    	
+    }
    
 }
 

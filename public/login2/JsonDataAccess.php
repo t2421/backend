@@ -18,6 +18,10 @@ class JsonDataAccess extends DataAccess{
     	}
     	return $select_data;
     }
+
+    public function selectAll(){
+    	return $this->_data;
+    }
    
 }
 
