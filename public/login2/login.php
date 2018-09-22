@@ -1,10 +1,12 @@
 <?php 
-require_once("./data.php");
+require_once("UserDataFactory.php");
 
 session_start();
 $_SESSION['login_token'] = base64_encode(openssl_random_pseudo_bytes(32));
 $error_message = "";
-$data_access = dataConnect();
+
+$datafacotry = new UserDataFactory();
+$data_access = $datafacotry->dataConnect();
 
 if(isset($_POST["login"])){
     
