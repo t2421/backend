@@ -14,5 +14,6 @@ $user = $data_access->select([
 	<body>
 		<h1>Hello Dashboard</h1>
 		<p><?php echo $user->displayName ?></p>
+        <a href="logout.php">logout</a>
 	</body>
 </html>
