@@ -42,6 +42,7 @@ if(isset($_POST["saveBlog"])){
 		<textarea name="description" cols="30" rows="10"><?php echo $blog->description ?></textarea>
         <p><input type="submit" name="saveBlog" value="saveBlog"></p>
         </form>
+        <p><a href="blog.php">blog index</a></p>
         <p><a href="logout.php">logout</a></p>
 	</body>
 </html>
