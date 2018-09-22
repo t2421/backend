@@ -23,6 +23,27 @@ class JsonDataAccess extends DataAccess{
     	return $this->_data;
     }
 
+    public function delete($condition){
+    	$select_data = null;
+        $search_key = array_keys($condition)[0];
+      
+        $delete_key = "";
+    	foreach ($this->_data as $key => $value) {
+     
+    		if($value->{$search_key} == $condition[$search_key]){
+                
+                $delete_key = $key;
+                break;
+            }
+        }
+        if(is_int($delete_key)){
+            array_splice($this->_data, $delete_key, 1);
+            $json = fopen(dirname(__FILE__).'/data/blog.json','w+b');
+            fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
+            fclose($json);
+        }
+    }
+
     public function update($condition,$data){
         $update_data = $this->select($condition);
         $update_data = $data;

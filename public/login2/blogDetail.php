@@ -31,6 +31,12 @@ if(isset($_POST["saveBlog"])){
     $blog_data_access->update(["id"=>$blog->id],$blog);
 }
 
+if(isset($_POST["trashBox"])){
+    $blog->deleteFlag = 1;
+    $blog_data_access->update(["id"=>$blog->id],$blog);
+    header("Location:blog.php");
+}
+
 ?>
 <html>
 	<head></head>
@@ -41,6 +47,7 @@ if(isset($_POST["saveBlog"])){
         <p>createdAt: <input type="text" name="createdAt" value="<?php echo $blog->createdAt ?>"></p>
 		<textarea name="description" cols="30" rows="10"><?php echo $blog->description ?></textarea>
         <p><input type="submit" name="saveBlog" value="saveBlog"></p>
+        <p><input type="submit" name="trashBox" value="trashBox"></p>
         </form>
         <p><a href="blog.php">blog index</a></p>
         <p><a href="logout.php">logout</a></p>
