@@ -22,6 +22,14 @@ class JsonDataAccess extends DataAccess{
     public function selectAll(){
     	return $this->_data;
     }
+
+    public function update($condition,$data){
+        $update_data = $this->select($condition);
+        $update_data = $data;
+        $json = fopen(dirname(__FILE__).'/data/blog.json','w+b');
+        fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
+        fclose($json);
+    }
    
 }
 
