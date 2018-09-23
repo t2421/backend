@@ -2,7 +2,7 @@
 require_once("./UserDataFactory.php");
 require_once("./BlogDataFactory.php");
 session_start();
-if(empty($_SESSION["userid"])){
+if(empty($_SESSION["id"])){
 	header("Location: login.php");
 }
 $datafacotry = new UserDataFactory();
@@ -12,7 +12,7 @@ $blogDataFactory = new BlogDataFactory();
 $blog_data_access = $blogDataFactory->dataConnect();
 
 $user = $data_access->select([
-	"userId" => $_SESSION["userid"]
+	"id" => $_SESSION["id"]
 ]);
 
 if(isset($_POST["completeDelete"])){
@@ -20,7 +20,7 @@ if(isset($_POST["completeDelete"])){
 }
 if(isset($_POST["redoDelete"])){
 	$blog = $blog_data_access->select(["id"=>$_POST["id"]]);
-	$blog->deleteFlag = 0;
+	$blog->delete_flag = 0;
 	$blog_data_access->update(["id"=>$_POST["id"]],$blog);
 }
 
@@ -33,7 +33,7 @@ $blog = $blog_data_access->selectAll();
 		<h1>My Blog in TrashBox</h1>
 		<ul>        
         <?php foreach ($blog as $item):
-            if(!$item->deleteFlag) continue;    
+            if(!$item->delete_flag) continue;    
         ?>
 			<li>
 			<a href="blogDetail.php?id=<?php echo $item->id ?>"><?php echo $item->title ?></a>

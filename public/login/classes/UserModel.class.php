@@ -3,18 +3,18 @@ namespace model;
 
 final class UserModel{
 
-    private $_userId = null;
+    private $_id = null;
     private $_password = null;
-    private $_displayName = null;
+    private $_account = null;
     private $_email = null;
     private $_token = null;
     private $_loginFailureCount = null;
     private $_loginFailureDatetime = null;
-    private $_deleteFlag = null;
+    private $_delete_flag = null;
 
-    public function setUserId($userId)
+    public function setUserId($id)
     {
-        $this->$_userId = $userId;
+        $this->$_id = $id;
         return $this;
     }
 
@@ -24,9 +24,9 @@ final class UserModel{
         return $this;
     }
 
-    public function setDisplayName($displayName)
+    public function setDisplayName($account)
     {
-        $this->$_displayName = $displayName;
+        $this->$_account = $account;
         return $this;
     }
 
@@ -55,15 +55,15 @@ final class UserModel{
         return $this;
     }
 
-    public function setDeleteFlag($deleteFlag)
+    public function setDeleteFlag($delete_flag)
     {
-        $this->$_deleteFlag = $deleteFlag;
+        $this->$_delete_flag = $delete_flag;
         return $this;
     }
 
     public function getUserId()
     {
-        return $_userId;
+        return $_id;
     }
 
     public function getPassword()
@@ -73,7 +73,7 @@ final class UserModel{
 
     public function getDisplayName()
     {
-        return $_displayName;
+        return $_account;
     }
 
     public function getEmail()
@@ -99,6 +99,6 @@ final class UserModel{
 
     public function getDeleteFlag()
     {
-        return $_deleteFlag;
+        return $_delete_flag;
     }
 }

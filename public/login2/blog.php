@@ -2,7 +2,7 @@
 require_once("./UserDataFactory.php");
 require_once("./BlogDataFactory.php");
 session_start();
-if(empty($_SESSION["userid"])){
+if(empty($_SESSION["id"])){
 	header("Location: login.php");
 }
 $datafacotry = new UserDataFactory();
@@ -12,7 +12,7 @@ $blogDataFactory = new BlogDataFactory();
 $blog_data_access = $blogDataFactory->dataConnect();
 
 $user = $data_access->select([
-	"userId" => $_SESSION["userid"]
+	"id" => $_SESSION["id"]
 ]);
 
 $blog = $blog_data_access->selectAll();
@@ -25,7 +25,7 @@ $blog = $blog_data_access->selectAll();
 		<h1>My Blog</h1>
 		<ul>        
         <?php foreach ($blog as $item):
-            if($item->deleteFlag) continue;    
+            if($item->delete_flag) continue;    
         ?>
 			<li><a href="blogDetail.php?id=<?php echo $item->id ?>"><?php echo $item->title ?></a></li>
 		<?php endforeach; ?>

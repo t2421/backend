@@ -2,8 +2,10 @@
 require_once("DataAccess.php");
 class JsonDataAccess extends DataAccess{
     private $_data;
-    function __construct($data){
+    private $_data_source;
+    function __construct($data,$data_source){
         $this->_data = $data;
+        $this->_data_souce = $data_source;
     }
 
     public function select($condition){
@@ -11,7 +13,6 @@ class JsonDataAccess extends DataAccess{
     	$search_key = array_keys($condition)[0];
 
     	foreach ($this->_data as $value) {
-           
     		if($value->{$search_key} == $condition[$search_key]){
                 $select_data = $value;	
             }
@@ -38,7 +39,7 @@ class JsonDataAccess extends DataAccess{
         }
         if(is_int($delete_key)){
             array_splice($this->_data, $delete_key, 1);
-            $json = fopen(dirname(__FILE__).'/data/blog.json','w+b');
+            $json = fopen($this->_data_souce,'w+b');
             fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
             fclose($json);
         }
@@ -47,20 +48,21 @@ class JsonDataAccess extends DataAccess{
     public function update($condition,$data){
         $update_data = $this->select($condition);
         $update_data = $data;
-        $json = fopen(dirname(__FILE__).'/data/blog.json','w+b');
+        $json = fopen($this->_data_souce,'w+b');
         fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
         fclose($json);
     }
 
     public function insert($data){
         //仮に一番最初の要素が一番新しいとする。
-        
-       
-        $new_id = $this->_data[0]->id+1;
+        if(count($this->_data) == 0){
+            $new_id = 1;
+        }else{
+            $new_id = $this->_data[0]->id+1;
+        }
         $data->id = $new_id;
         array_unshift($this->_data,$data);
-        var_dump($this->_data);
-        $json = fopen(dirname(__FILE__).'/data/blog.json','w+b');
+        $json = fopen($this->_data_souce,'w+b');
         fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
         fclose($json);
         return $data;

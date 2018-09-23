@@ -12,18 +12,18 @@ $dbh = db_connect();
 
 
 if(isset($_POST["login"])){
-    if(empty($_POST["userid"])){
+    if(empty($_POST["id"])){
         $error_message = "idいるよ";
     }else if(empty($_POST["password"])){
         $error_message = "パスいるよ";
     }
 
-    if (!empty($_POST["userid"]) && !empty($_POST["password"])) {
-        $userid = $_POST["userid"];
+    if (!empty($_POST["id"]) && !empty($_POST["password"])) {
+        $id = $_POST["id"];
         try{
             $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $stmt = $dbh->prepare("select * from member where account=:account");
-            $stmt->bindValue(':account',$userid,PDO::PARAM_STR);
+            $stmt->bindValue(':account',$id,PDO::PARAM_STR);
             $stmt->execute();
             $val = $stmt->fetch(PDO::FETCH_ASSOC);
             
@@ -57,7 +57,7 @@ if(isset($_POST["login"])){
     <fieldset>
         <legend>ログインフォーム</legend>
         <div><font color="#ff0000"><?php echo htmlspecialchars($error_message, ENT_QUOTES); ?></font></div>
-        <label for="userid">ユーザーID</label><input type="text" id="userid" name="userid" placeholder="ユーザーIDを入力" value="<?php if (!empty($_POST["userid"])) {echo htmlspecialchars($_POST["userid"], ENT_QUOTES);} ?>">
+        <label for="id">ユーザーID</label><input type="text" id="id" name="id" placeholder="ユーザーIDを入力" value="<?php if (!empty($_POST["id"])) {echo htmlspecialchars($_POST["id"], ENT_QUOTES);} ?>">
         <br>
         <label for="password">パスワード</label><input type="password" id="password" name="password" value="" placeholder="パスワードを入力">
         <br>

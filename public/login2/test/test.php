@@ -28,7 +28,7 @@ $new_blog = array(
     "createUser" => 2,
     "description" => "HOGE!",
     "createdAt" => 10,
-    "deleteFlag" => 0
+    "delete_flag" => 0
 );
 $cast_blog = json_decode(json_encode($new_blog));
 $blog_data_access->insert($cast_blog);

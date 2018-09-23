@@ -7,7 +7,7 @@ $error_message = "";
 
 $datafacotry = new UserDataFactory();
 $data_access = $datafacotry->dataConnect();
-
+var_dump($_POST);
 if(isset($_POST["login"])){
     
 	if(empty($_POST["email"])){
@@ -22,7 +22,7 @@ if(isset($_POST["login"])){
         ));
         if($user->password == $_POST["password"]){
             session_regenerate_id(true);
-            $_SESSION["userid"] = $user->userId;
+            $_SESSION["id"] = $user->id;
             header("Location: main.php");
         }else{
             echo("失敗");
