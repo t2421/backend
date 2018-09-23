@@ -22,4 +22,15 @@ echo("<h2>blog update</h2>");
 $blog_data->description = "HOGEHOGEJUJUJU";
 $blog_data_access->update(["id"=>$blog_data->id],$blog_data);
 
+echo("<h2>blog insert</h2>");
+$new_blog = array(
+    "title" => "article4",
+    "createUser" => 2,
+    "description" => "HOGE!",
+    "createdAt" => 10,
+    "deleteFlag" => 0
+);
+$cast_blog = json_decode(json_encode($new_blog));
+$blog_data_access->insert($cast_blog);
+
 ?>

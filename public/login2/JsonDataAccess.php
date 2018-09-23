@@ -51,6 +51,20 @@ class JsonDataAccess extends DataAccess{
         fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
         fclose($json);
     }
+
+    public function insert($data){
+        //仮に一番最初の要素が一番新しいとする。
+        
+       
+        $new_id = $this->_data[0]->id+1;
+        $data->id = $new_id;
+        array_unshift($this->_data,$data);
+        var_dump($this->_data);
+        $json = fopen(dirname(__FILE__).'/data/blog.json','w+b');
+        fwrite($json,json_encode($this->_data, JSON_UNESCAPED_UNICODE));
+        fclose($json);
+        return $data;
+    }
    
 }
 

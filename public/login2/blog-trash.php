@@ -18,6 +18,11 @@ $user = $data_access->select([
 if(isset($_POST["completeDelete"])){
     $blog_data_access->delete(["id"=>$_POST["id"]]);
 }
+if(isset($_POST["redoDelete"])){
+	$blog = $blog_data_access->select(["id"=>$_POST["id"]]);
+	$blog->deleteFlag = 0;
+	$blog_data_access->update(["id"=>$_POST["id"]],$blog);
+}
 
 $blog = $blog_data_access->selectAll();
 
@@ -34,6 +39,7 @@ $blog = $blog_data_access->selectAll();
 			<a href="blogDetail.php?id=<?php echo $item->id ?>"><?php echo $item->title ?></a>
 			<form action="blog-trash.php" method="POST">
 				<input type="hidden" name="id" value="<?php echo $item->id ?>">
+				<input type="submit" name="redoDelete" value="redoDelete">
 				<input type="submit" name="completeDelete" value="completeDelete">
 			</form>
 			</li>

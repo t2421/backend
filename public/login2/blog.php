@@ -30,6 +30,7 @@ $blog = $blog_data_access->selectAll();
 			<li><a href="blogDetail.php?id=<?php echo $item->id ?>"><?php echo $item->title ?></a></li>
 		<?php endforeach; ?>
         </ul>
+        <p><a href="blogAdd.php">新規追加</a></p>
         <p><a href="blog-trash.php">ゴミ箱</a></p>
         <a href="logout.php">logout</a>
 	</body>
