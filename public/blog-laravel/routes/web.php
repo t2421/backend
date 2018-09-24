@@ -22,6 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>['auth','can:user-higher']],function(){
     Route::get('/account','AccountController@index')->name('account.index');
+    Route::get('/articles','ArticleController@index')->name('article.index');
+    Route::get('/articles/create','ArticleController@create')->name('article.create');
+    Route::post('/articles/create','ArticleController@store')->name('article.create');
+    Route::get('/articles/edit/{id}','ArticleController@edit')->name('article.edit');
+    Route::post('/articles/edit','ArticleController@update')->name('article.edit');
+    Route::get('/articles/delete/{id}','ArticleController@show')->name('article.edit');
+    Route::post('/articles/delete/','ArticleController@delete')->name('article.delete');
 });
 
 Route::group(['middleware'=>['auth','can:admin-higher']],function(){
