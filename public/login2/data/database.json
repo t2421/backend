@@ -1,0 +1,29 @@
+[
+    {
+        "password": "password",
+        "account": "t2421js",
+        "email": "t2421gm+js@gmail.com",
+        "delete_flag": 0,
+        "id": 3
+    },
+    {
+        "id": 2,
+        "password": "password2",
+        "account": "My Name is PHP Hyper Creator",
+        "email": "t2421gm+php@gmail.com",
+        "token": "misatowatanabe",
+        "loginFailureCount": 0,
+        "loginFailureDatetime": 0,
+        "delete_flag": 0
+    },
+    {
+        "id": 1,
+        "password": "password",
+        "account": "My Name is PHP",
+        "email": "t2421gm@gmail.com",
+        "token": "myrevolution",
+        "loginFailureCount": 0,
+        "loginFailureDatetime": 0,
+        "delete_flag": 0
+    }
+]

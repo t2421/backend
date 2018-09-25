@@ -41,3 +41,6 @@ flag TINYINT(1) NOT NULL DEFAULT 1
 
 無理やりやってみたらコード汚かったので、きれいそうな以下の例でやってみたい  
 https://qiita.com/ShibuyaKosuke/items/f114ffccf441edb2b745
+
+## ToDo
++ できる限り具象クラスを参照しないようにする。抽象レイヤーを参照する
