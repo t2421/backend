@@ -1,13 +1,19 @@
 <?php 
+require_once("User.php");
 require_once("UserDataFactory.php");
+require_once("Session.php");
 
-session_start();
-$_SESSION['login_token'] = base64_encode(openssl_random_pseudo_bytes(32));
+$user_model = new User();
+
+Session::start();
+Session::setValue('login_token',$user_model->create_token());
+
 $error_message = "";
 
 $datafacotry = new UserDataFactory();
 $data_access = $datafacotry->dataConnect();
-var_dump($_POST);
+
+var_dump($user_model->is_login());
 if(isset($_POST["login"])){
     
 	if(empty($_POST["email"])){
@@ -21,8 +27,7 @@ if(isset($_POST["login"])){
 			"email" => $_POST["email"]
         ));
         if($user->password == $_POST["password"]){
-            session_regenerate_id(true);
-            $_SESSION["id"] = $user->id;
+			Session::setValue("id",$user->id);
             header("Location: main.php");
         }else{
             echo("失敗");
