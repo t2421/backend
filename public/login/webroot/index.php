@@ -1,5 +1,5 @@
 <?php
 require_once '../common.php';
-$objUserModel = new model\UserModel;
+$objUserModel = new MyApp\model\UserModel;
 var_dump($objUserModel);
 ?>
