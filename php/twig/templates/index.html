@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <table border="1" style="width: 80%;">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Description</td>
+                <td>Value</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            {% include 'product.html' with {'products': products} %}
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    <table border="1" style="width: 80%;">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Description</td>
+                <td>Value</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products if product.value < 250 %}
+            {% include 'product.html' with {'products': products} %}
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    <table border="1" style="width: 80%;">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Description</td>
+                <td>Value</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            {% if product.value > 500 %}
+            {% include 'product.html' with {'products': products} %}
+            {% endif %}
+            {% endfor %}
+        </tbody>
+        
+    </table>
+{% endblock %}
