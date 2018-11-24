@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="complete.php" method="post">
+    <p>{{post.name}}</p>
+    <input type="hidden" name="token" value="{{csrftoken}}">
+    <button type="submit">SUBMIT</button>
+</form>
+{% endblock %}
