@@ -2,7 +2,7 @@
 require_once __DIR__.'/bootstrap.php';
 require_once __DIR__.'/Session.php';
 
-Session::start();
+Session::init();
 if(!Session::csrf_check("token")){
     echo $twig->render('error.html');
     exit();

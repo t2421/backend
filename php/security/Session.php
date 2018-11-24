@@ -1,10 +1,15 @@
 <?php
 class Session{
-    static public function is_active(){
+    static public function init(){
+        session_name('fck_session');
+        Session::start();
+    }
+
+    static private function is_active(){
         return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
     }
 
-    static public function start(){
+    static private function start(){
         if(!Session::is_active()){
             session_start();
         }
