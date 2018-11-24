@@ -9,10 +9,11 @@ class AddUser extends Migration
      */
     public function up()
     {
+        $now = 
         $sql = 'CREATE TABLE user_list (
-            id INTEGER PRIMARY KEY,
-            name TEXT,
-            created_at TEXT
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )';
         
         $container = $this->getContainer(); 
@@ -24,7 +25,7 @@ class AddUser extends Migration
      */
     public function down()
     {
-        $sql = "DROP TABLE user;";
+        $sql = "DROP TABLE user_list;";
         $container = $this->getContainer(); 
         $container['db']->query($sql);
     }
