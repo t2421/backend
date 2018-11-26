@@ -4,6 +4,7 @@ require_once './vendor/autoload.php';
 $dispatcher= FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $router) {
     $router->get('/', 'index');
     $router->get('/user/{name:\w+}', 'user');
+    $router->get('/api/user/{name:\w+}', 'user_api');
     $router->get('/user/{name:\w+}/detail', 'user_detail');
     $router->get('/user/{name:\w+}/post/{post_id:\d+}', 'post');
 });
@@ -40,6 +41,16 @@ function user($vars)
 {
     return $vars['name'] . 'のプロフィールページです';
 }
+
+function user_api($vars)
+{
+    $val = array(
+        "name" => $vars["name"],
+        "description" => "hogehogehogeDescription"
+    );
+    return json_encode($val);
+}
+
 
 function user_detail($vars)
 {
