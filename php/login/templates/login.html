@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/login" method="post">
+    <input type="text" name="username">
+    {% if error.username is defined %}
+    <p>{{error.username}}</p>
+    {% endif %}
+    <input type="password" name="password">
+    {% if error.password is defined %}
+    <p>{{error.password}}</p>
+    {% endif %}
+    <button type="submit">登録</button>
+</form>
+{% endblock %}
