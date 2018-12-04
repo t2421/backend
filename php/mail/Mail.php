@@ -1,21 +1,22 @@
 <?php
+require_once __DIR__.'/bootstrap.php';
 class Mail{
     private $_to = "";
     private $_template_path = "";
     private $_data;
-    public function __construct($to,$template_path){
+
+    public function __construct($to,$template_path,$data){
         $this->_to = $to;
         $this->_template_path = $template_path;
-    }
-
-    public function setData($data){
         $this->_data = $data;
+
+        $loader = new Twig_Loader_Filesystem(__DIR__.'/templates');
+        $this->twig = new Twig_Environment($loader);
     }
-    
+    private function _getContents(){
+        return $this->twig->render($this->_template_path, ['data' => $this->_data] );
+    }
     public function send(){
-        $data = $this->_data;
-        ob_start();
-        include($this->_template_path);
-        return ob_get_clean();    
+        echo($this->_getContents());
     }
 }
