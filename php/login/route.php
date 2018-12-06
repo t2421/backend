@@ -1,6 +1,8 @@
 <?php
+require_once __DIR__."/LoginController.php";
 
 $dispatcher= FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $router) {
+    $router->get('/', 'welcome');
     $router->get('/login', 'login');
     $router->post('/login', 'login_post');
     $router->get('/dashboard', 'dashboard');
@@ -13,16 +15,15 @@ $uri = remove_urlparam($uri);
 $uri = rawurldecode($uri);
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
-var_dump($routeInfo);
 
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        header('HTTP/1.0 404 Not Found');
+        http_response_code(404);
         echo not_found();
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        header('HTTP/1.0 405 Method Not Allowed');
+        http_response_code(405);
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
@@ -31,40 +32,24 @@ switch ($routeInfo[0]) {
         break;
 }
 
+function welcome(){
+    render('welcome.html');
+}
+
 function login()
 {
-    
-    render('login.html',array(
-        "csrftoken" => Session::token()
-    ));
-    
+    $controller = new LoginController();
+    $controller->loginView();   
 }
 
 function login_post()
 {
-   
-    $error = array();
-    if(empty($_POST["username"])){
-        $error["username"] = "ユーザー名を入力しろ";
-    }
-    if(empty($_POST["password"])){
-        $error["password"] = "パスワードを入力しろ";
-    }
-    
-    if(empty($_POST["username"]) || empty($_POST["password"])){
-        render('login.html',array(
-            "csrftoken" => Session::token(),
-            "error"=>$error
-        ));
-    }else{
-        header("Location: /dashboard");
-    }
-    
+    $controller = new LoginController();
+    $controller->loginPost($_POST);
 }
 
 function dashboard()
 {
-    echo("login");
     render('dashboard.html',array(
         "csrftoken" => Session::token()
     ));
